@@ -290,19 +290,16 @@ private ArrayList<Individual> getGoodParents(){
 	ArrayList<Individual> tempPop = population;
 	ArrayList<Individual> newPop = new ArrayList<Individual>();
 	Individual temp = new Individual();
-	//int originalPopSize = population.size();
-	
 	
 	for (int i=0;i<population.size()/2;i++) {
 		int bestId = getBestIndex();
-		temp = tempPop.get(bestId);
+		temp = population.get(bestId);
 		newPop.add(temp);
-		tempPop.remove(bestId);
 	}
 	
 	
 	
-	return newPop;
+	return population;
 	
 }
 

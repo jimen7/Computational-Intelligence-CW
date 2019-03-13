@@ -5,7 +5,35 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2019-03-11T10:40:09Z</updated>
+  <updated>2019-03-13T06:13:00Z</updated>
+  <entry>
+    <title>This Week in Spring - March 12th, 2019</title>
+    <link rel="alternate" href="https://spring.io/blog/2019/03/13/this-week-in-spring-march-12th-2019" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Josh Long</name>
+    </author>
+    <id>tag:spring.io,2019-03-13:3602</id>
+    <updated>2019-03-13T06:13:00Z</updated>
+    <content type="html">&lt;p&gt;Hi Spring fans! What a week! I&amp;rsquo;m in Seattle, Washington where I&amp;rsquo;ve been spending time with Pivotal partner Microsoft talking about all things Spring, Cloud Foundry and Azure, and then tonight I spoke at the Seattle Java User Group on Reactive Spring. &lt;/p&gt;
+&lt;p&gt;Tomorrow morning I&amp;rsquo;m off to jolie Montreal, Canada for the epic ConFoo conference. Are &lt;a href="http://twitter.com/Starbuxman"&gt;you going to be around? Say hi!&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;Anyway, without further ado let&amp;rsquo;s get to this week&amp;rsquo;s roundup! &lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/03/11/memory-footprint-of-the-jvm"&gt;Memory footprint of the JVM&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/03/08/spring-boot-2-2-m1"&gt;Spring Boot 2.2 M1&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/03/08/a-bootiful-podcast-matt-raible-and-james-ward-at-devnexus-2019"&gt;A Bootiful Podcast: Matt Raible and James Ward at Devnexus 2019&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/03/07/spring-cloud-greenwich-sr1-is-now-available"&gt;Spring Cloud Greenwich.SR1 is now available&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/03/07/spring-data-moore-m2-released"&gt;Spring Data Moore M2 released&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/03/07/has-there-ever-been-a-better-time-to-become-a-java-developer"&gt;Has there ever been a better time to become a Java developer?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/03/06/spring-cloud-data-flow-and-skipper-2-0-ga-released"&gt;Spring Cloud Data Flow and Skipper 2.0 GA Released&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;I love this post on the nuances of assembly versus subscription in Reactor: &lt;a href="https://spring.io/blog/2019/03/06/flight-of-the-flux-1-assembly-vs-subscription"&gt;Flight of the Flux (part 1)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Good news everybody! Today marks the 30th anniversary of the &lt;a href="https://www.nbcnews.com/tech/tech-news/world-wide-web-30-its-inventor-has-warning-us-n982156"&gt;World Wide Web&lt;/a&gt;! Tim Berners Lee, who created the HTTP web, has a stark warning for us worth our attention.&lt;/li&gt;
+  &lt;li&gt;This is an interesting third-party project that generates HTTP request snippets &lt;a href="https://github.com/atkawa7/httpsnippet"&gt;for SpringFox which integrates Swagger with Spring&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;The Codecentric blog has an interesting approach to &lt;a href="https://blog.codecentric.de/en/2019/03/spot-mismatches-between-your-spec-and-your-rest-api/"&gt;spotting mismatches between your specification and your REST API with hikakug&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Have you seen this? A gorgeous Kotlin DSL that lets you build piplines in Kotlin code for the Spinnaker, &lt;a href="https://github.com/canal-pipelines/canal"&gt;the continuous delivery pipeline&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Spring HATEOAS now &lt;a href="https://twitter.com/sebastien_pel/status/1102977786262757377"&gt;supports reactive and Spring WebFlux&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</content>
+  </entry>
   <entry>
     <title>Memory footprint of the JVM</title>
     <link rel="alternate" href="https://spring.io/blog/2019/03/11/memory-footprint-of-the-jvm" />
@@ -14,10 +42,11 @@
       <name>Andy Wilkinson</name>
     </author>
     <id>tag:spring.io,2019-03-07:3598</id>
-    <updated>2019-03-11T10:40:09Z</updated>
+    <updated>2019-03-11T10:40:00Z</updated>
     <content type="html">&lt;p&gt;The JVM can be a complex beast. Thankfully, much of that complexity is under the hood, and we as application developers and deployers often don&amp;rsquo;t have to worry about it too much. With the rise of container-based deployment strategies, one area of complexity that needs some attention is the JVM&amp;rsquo;s memory footprint.&lt;/p&gt;&lt;h2&gt;&lt;a href="#two-kinds-of-memory" class="anchor" name="two-kinds-of-memory"&gt;&lt;/a&gt;Two kinds of memory&lt;/h2&gt;
 &lt;p&gt;The JVM divides its memory into two main categories: heap memory and non-heap memory. Heap memory is the part with which people are typically the most familiar. It&amp;rsquo;s where objects that are created by the application are stored. They remain there until they are no longer referenced and are garbage collected. Typically, the amount of heap that an application is using will fluctuate as a function of the current load.&lt;/p&gt;
-&lt;p&gt;The JVM&amp;rsquo;s non-heap memory is divided into several different areas. Let&amp;rsquo;s illustrate this by looking at an application, in this case our old friend, Petclinic. We can use the HotSpot VM&amp;rsquo;s &lt;a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/nmt-8.html"&gt;native memory tracking (NMT)&lt;/a&gt; to examine its memory usage by starting the application with &lt;code&gt;-Xmx48M -XX:NativeMemoryTracking=summary&lt;/code&gt; and then using &lt;code&gt;jcmd &amp;lt;pid&amp;gt; VM.native_memory summary&lt;/code&gt; to display the summary. The following pie chart shows the JVM&amp;rsquo;s memory usage as reported by NMT (minus its own overhead):&lt;/p&gt;
+&lt;p&gt;The JVM&amp;rsquo;s non-heap memory is divided into several different areas. We can use the HotSpot VM&amp;rsquo;s &lt;a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/nmt-8.html"&gt;native memory tracking (NMT)&lt;/a&gt; to examine its memory usage across these areas. Note that, while NMT does not track all native memory usage (it &lt;a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/nmt-8.html"&gt;does not track third party native code memory allocations&lt;/a&gt;, for example), it is sufficient for a large class of typical Spring applications. NMT can be used by starting the application with &lt;code&gt;-XX:NativeMemoryTracking=summary&lt;/code&gt; and then using &lt;code&gt;jcmd &amp;lt;pid&amp;gt; VM.native_memory summary&lt;/code&gt; to display the memory usage summary.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s illustrate the use of NMT by looking at an application, in this case our old friend, Petclinic. The following pie chart shows the JVM&amp;rsquo;s memory usage as reported by NMT (minus its own overhead) when starting Petclinic with a 48MB max heap (&lt;code&gt;-Xmx48M&lt;/code&gt;):&lt;/p&gt;
 &lt;center&gt;&#xD;
 &lt;img width=50% height=50% src="https://static.spring.io/blog/wilkinsona/20190311/memory-usage.png"&gt;&lt;/img&gt;&#xD;
 &lt;/center&gt;
@@ -1775,18 +1804,5 @@ Dependent libraries that had recent CVEs reported were updated.&lt;/p&gt;
 &lt;p&gt;Detailed changes can be found here: &lt;a href="https://github.com/spring-projects/sts4/wiki/Changelog#2019-02-21-412-release"&gt;https://github.com/spring-projects/sts4/wiki/Changelog#2019-02-21-412-release&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Spring Tools 4.2.0 is scheduled to be released in late March 2019 (including an update to Eclipse 2019-03).&lt;/p&gt;
 &lt;p&gt;Enjoy!&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>A Bootiful Podcast: an Interview with Sree Tummidi, Senior Product Manager for Security at Pivotal</title>
-    <link rel="alternate" href="https://spring.io/blog/2019/02/22/a-bootiful-podcast-an-interview-with-sree-tummidi-senior-product-manager-for-security-at-pivotal" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2019-02-22:3572</id>
-    <updated>2019-02-22T00:34:09Z</updated>
-    <content type="html">&lt;p&gt;Hi Spring fans! This week I&amp;rsquo;m excited to welcome Sreee Tummidi, a senior product manager working at the intersection of application security and platform at Pivotal. We talked about security, Spring Security, cloud platforms, OAuth, OIDC and OIDC Connect, SAML, and of course the Cloud Foundry UAA, and tons more.&lt;/p&gt;
-&lt;p&gt;Twitter: &lt;a href="http://twitter.com/sreetummidi"&gt;@sreetummidi&lt;/a&gt;&lt;br/&gt;&lt;a href="github.com/cloudfoundry/uaa"&gt;UAA&lt;/a&gt;&lt;/p&gt;
-&lt;iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/579250395&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"&gt;&lt;/iframe&gt;</content>
   </entry>
 </feed>
