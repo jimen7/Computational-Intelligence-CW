@@ -170,6 +170,7 @@ private Individual tournamentSelect() {
 	
 	Individual parent = null;
 	int tnSize = 10;
+	//int tnSize = population.size()/10;
 	Individual[] potParent = new Individual[tnSize];
 	
 	
@@ -294,7 +295,8 @@ private ArrayList<Individual> getGoodParents(){
 	
 	
 	for (int i=0;i<population.size()/2;i++) {
-		int bestId = getBestIndex();
+		
+		int bestId = getBestIndex(tempPop);
 		temp = tempPop.get(bestId);
 		newPop.add(temp);
 		tempPop.remove(bestId);
@@ -313,9 +315,10 @@ private ArrayList<Individual> getGoodParents(){
 	 * NEEDS REPLACED with proper method this code just returns exact copies of the
 	 * parents. 
 	 */
-	private ArrayList<Individual> reproduce(Individual parent1, Individual parent2) {//Aritmetic Recobination
+	private ArrayList<Individual> reproduce(Individual parent1, Individual parent2) {
 		//return ArithmeticRecombination(parent1, parent2);
-		return uniformCrossover(parent1, parent2);
+		//return uniformCrossover(parent1, parent2);
+		return myUniformCrossover(getGoodParents());
 	} 
 	
 	/**
@@ -345,10 +348,14 @@ private ArrayList<Individual> getGoodParents(){
 	 * 
 	 */
 	private void replace(ArrayList<Individual> individuals) {
+		//ArrayList<Individual> newPop = getGoodParents();
+		
 		for(Individual individual : individuals) {
 			int idx = getWorstIndex();		
 			population.set(idx, individual);
 		}		
+		
+		//int i = 0;
 	}
 
 	
@@ -357,11 +364,11 @@ private ArrayList<Individual> getGoodParents(){
 	 * Returns the index of the best member of the population
 	 * @return
 	 */
-	private int getBestIndex() {
+	private int getBestIndex(ArrayList<Individual> tempPop) {
 		Individual best = null;
 		int idx = -1;
-		for (int i = 0; i < population.size(); i++) {
-			Individual individual = population.get(i);
+		for (int i = 0; i < tempPop.size(); i++) {
+			Individual individual = tempPop.get(i);
 			if (best == null) {
 				best = individual;
 				idx = i;
@@ -370,6 +377,7 @@ private ArrayList<Individual> getGoodParents(){
 				idx = i; 
 			}
 		}
+		//tempPop.remove(idx);
 		return idx;
 	}	
 	
