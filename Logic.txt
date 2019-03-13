@@ -1,0 +1,59 @@
+We want ton replace the old population, so:
+
+1) set new variable  population to be Get Good 50% of current population(Vaiable newPOP)		(50% of old population)
+
+1) we reproduce  newPOP, therefore we get 50% new ch
+
+2) We mutate existing new population
+
+3) Evaluate
+
+5) Add the children from above							(75% of popluation)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6) do tournamentSelect to select best of these to slect parentrs
+
+7) reproduce until; we reach correct number of population				(100% of population)
+
+8) replace old population with new population
+
+
+
+1)We have 200 parents. We set newPop to be 50% goo part of the 200  	(newPop = 100)
+
+2) reproduce using newPop						
+
+
+
+Examples to undesratnd
+
+200 total initial population
+get 50%

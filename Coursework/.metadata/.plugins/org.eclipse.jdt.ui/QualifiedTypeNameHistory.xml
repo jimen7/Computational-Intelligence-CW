@@ -3,5 +3,8 @@
 <fullyQualifiedTypeName name="coursework.ExampleHillClimber"/>
 <fullyQualifiedTypeName name="coursework.ExampleEvolutionaryAlgorithm"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="coursework.OwnEvolutionaryAlgorithm"/>
 <fullyQualifiedTypeName name="model.Individual"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>
