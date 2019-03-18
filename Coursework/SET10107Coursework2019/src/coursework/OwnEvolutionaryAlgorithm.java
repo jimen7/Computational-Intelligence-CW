@@ -47,7 +47,7 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 			//Individual parent1 = select(); 
 			//Individual parent2 = select();
 			
-			
+			newPopulation.clear();
 
 			// Generate a child by crossover. Not Implemented		
 			newPopulation.addAll(getGoodParents());
@@ -66,6 +66,11 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 			//replace(children);
 			
 			newPopulation.addAll(children);
+			
+			//Replaces old population with new Population
+			
+			population.clear();
+			population.addAll(newPopulation);
 
 			// check to see if the best has improved
 			best = getBest();
@@ -73,7 +78,9 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 			// Implemented in NN class. 
 			outputStats();
 			
-			//Increment number of completed generations			
+			//Increment number of completed generations		
+			
+			
 		}
 
 		//save the trained network to disk
@@ -184,18 +191,22 @@ private Individual tournamentSelect(ArrayList<Individual> newPop) {
 private ArrayList<Individual> myUniformCrossover(ArrayList<Individual> parents){	//Its replaces the part before or after the weights of the hidden nodes
 	
 	ArrayList<Individual> children = new ArrayList<>();
-	Individual temp = new Individual();
+	
+	
 	
 	Random r = new Random();
 	
 	int childNum = 2;
-	int potChild = 10;
+//	int potChild = 10;
 	
 	for(int k = 0;k<parents.size();k=k+2) {
 		
-		ArrayList<Individual> initChildren = new ArrayList<>();
+		//ArrayList<Individual> initChildren = new ArrayList<>();
 		
-		for (int i =0;i<potChild;i++) {
+		//for (int i =0;i<potChild;i++) {
+		for (int i =0;i<childNum;i++) {
+			
+			Individual temp = new Individual();
 			
 			for (int j = 0; j<parents.get(0).chromosome.length;j++) {		//Chromosome length is the same for every chromosome
 				
@@ -207,21 +218,24 @@ private ArrayList<Individual> myUniformCrossover(ArrayList<Individual> parents){
 				}
 				
 			}
+			//Fitness.evaluate(temp, this);
 			
-			
-			initChildren.add(temp);
+			children.add(temp);
 		}
 		
-		Collections.sort(initChildren);
+		//Collections.sort(initChildren);
 		
-		for (int i=0;i<childNum;i++) {
-			children.add(initChildren.get(i));
-		}
+//		for (int i=0;i<childNum;i++) {
+//			children.add(initChildren.get(i));
+//		}
 		
 		
 	}
 	
-
+//	for (int i = 0;i<children.size();i++){
+//		mutate(children);
+//		evaluateIndividuals(children);
+//	}
 	
 	return children;
 }
@@ -244,6 +258,7 @@ private ArrayList<Individual> getGoodParents(){
 	for (int i=0;i<population.size()/2;i++) {
 		temp = tempPop.get(i);
 		newPop.add(temp);
+		//tempPop.remove(i);
 	}
 	
 	

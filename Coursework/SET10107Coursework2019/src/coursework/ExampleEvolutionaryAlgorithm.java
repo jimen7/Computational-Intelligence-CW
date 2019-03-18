@@ -169,8 +169,8 @@ private Individual rouletteSelect() {
 private Individual tournamentSelect() {
 	
 	Individual parent = null;
-	int tnSize = 10;
-	//int tnSize = population.size()/10;
+	//int tnSize = 10;
+	int tnSize = population.size()/3;
 	Individual[] potParent = new Individual[tnSize];
 	
 	
