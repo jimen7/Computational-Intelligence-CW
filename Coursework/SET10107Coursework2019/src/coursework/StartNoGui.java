@@ -24,6 +24,9 @@ public class StartNoGui {
 		 */
 		Parameters.maxEvaluations = 20000; // Used to terminate the EA after this many generations
 		Parameters.popSize = 1000; // Population Size
+		
+		Parameters.mutateRate = 0.2;
+		Parameters.mutateChange = 0.05;
 
 		//number of hidden nodes in the neural network
 		Parameters.setHidden(2);

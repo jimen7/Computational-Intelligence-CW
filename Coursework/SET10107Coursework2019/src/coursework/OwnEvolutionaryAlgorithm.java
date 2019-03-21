@@ -1,8 +1,11 @@
 package coursework;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
+
+import org.omg.DynamicAny.DynAnyFactoryPackage.InconsistentTypeCodeHelper;
 
 import model.Fitness;
 import model.Individual;
@@ -17,7 +20,7 @@ import model.NeuralNetwork;
  */
 public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 	
-	ArrayList<Individual> newPopulation = new ArrayList<Individual>();
+	//ArrayList<Individual> newPopulation = new ArrayList<Individual>();
 	/**
 	 * The Main Evolutionary Loop
 	 */
@@ -44,33 +47,35 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 			 */
 
 			// Select 2 Individuals from the current population. Currently returns random Individual
-			//Individual parent1 = select(); 
-			//Individual parent2 = select();
+			Individual parent1 = select(); 
+			Individual parent2 = select();
 			
-			newPopulation.clear();
+			////newPopulation.clear();
 
 			// Generate a child by crossover. Not Implemented		
-			newPopulation.addAll(getGoodParents());
-			
-			ArrayList<Individual> children = reproduce();			
+			//newPopulation.addAll(getGoodParents());
+			//newPopulation.addAll(getGoodParents2());
+			//newPopulation.addAll(getQuarterGoodPop(population));
+			//
+			ArrayList<Individual> children = reproduce2(parent1,parent2);			
 			
 			//mutate the offspring
-			mutate(children);
+			//mutate(children);
 			
 			// Evaluate the children
-			evaluateIndividuals(children);	
+			//evaluateIndividuals(children);	
 			
 			
 
 			// Replace children in population
-			//replace(children);
+			replace(children);
 			
-			newPopulation.addAll(children);
+			//newPopulation.addAll(children);
 			
 			//Replaces old population with new Population
 			
-			population.clear();
-			population.addAll(newPopulation);
+			//population.clear();
+			//population.addAll(newPopulation);
 
 			// check to see if the best has improved
 			best = getBest();
@@ -144,23 +149,33 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 	private Individual select() {	
 		
 		//return rouletteSelect();
-		//return tournamentSelect();
-		return null;
+		return tournamentSelect(getPartPop(population, 4));
+		//return null;
 	}
 	
 	
 
 
-	private void setNewPop(ArrayList<Individual> test) {
-		population = test;
+private ArrayList<Individual> getPartPop(ArrayList<Individual> test,int portion) {
+		ArrayList<Individual> tempPop = population;
+		Collections.sort(tempPop);
+		
+		
+		ArrayList<Individual> goodPop = new ArrayList<Individual>();
+		for (int i = 0; i<tempPop.size()/portion;i++) {
+			goodPop.add(tempPop.get(i));
+		}
+		
+		return goodPop;
 	}
 	
 
 private Individual tournamentSelect(ArrayList<Individual> newPop) {
 	
 	Individual parent = null;
-	int tnSize = newPop.size()/3;
-	//int tnSize = population.size()/10;
+	
+	int tnSize = 5;
+	//int tnSize = population.size()/3;
 	Individual[] potParent = new Individual[tnSize];
 	
 	
@@ -168,7 +183,8 @@ private Individual tournamentSelect(ArrayList<Individual> newPop) {
 	
 	
 	for (int i=0;i<tnSize;i++) {
-		potParent[i] = population.get(r.nextInt(population.size()) );
+		//potParent[i] = population.get(r.nextInt(population.size()) );
+		potParent[i] = newPop.get(r.nextInt(newPop.size()));
 	}
 	
 	double bestFitness = 1 - potParent[0].fitness;
@@ -188,57 +204,39 @@ private Individual tournamentSelect(ArrayList<Individual> newPop) {
 }
 
 
-private ArrayList<Individual> myUniformCrossover(ArrayList<Individual> parents){	//Its replaces the part before or after the weights of the hidden nodes
+
+private Individual tournamentSelect() {
 	
-	ArrayList<Individual> children = new ArrayList<>();
-	
+	Individual parent = null;
+	//int tnSize = 10;
+	int tnSize = population.size()/4;
+	Individual[] potParent = new Individual[tnSize];
 	
 	
 	Random r = new Random();
 	
-	int childNum = 2;
-//	int potChild = 10;
 	
-	for(int k = 0;k<parents.size();k=k+2) {
-		
-		//ArrayList<Individual> initChildren = new ArrayList<>();
-		
-		//for (int i =0;i<potChild;i++) {
-		for (int i =0;i<childNum;i++) {
-			
-			Individual temp = new Individual();
-			
-			for (int j = 0; j<parents.get(0).chromosome.length;j++) {		//Chromosome length is the same for every chromosome
-				
-				if (r.nextDouble()>0.5D) {
-					temp.chromosome[j]=parents.get(k).chromosome[j];
-				}
-				else {
-					temp.chromosome[j]=parents.get(k+1).chromosome[j];
-				}
-				
-			}
-			//Fitness.evaluate(temp, this);
-			
-			children.add(temp);
-		}
-		
-		//Collections.sort(initChildren);
-		
-//		for (int i=0;i<childNum;i++) {
-//			children.add(initChildren.get(i));
-//		}
-		
-		
+	for (int i=0;i<tnSize;i++) {
+		potParent[i] = population.get(r.nextInt(population.size()) );
+		//potParent[i] = population.get(r.nextInt(population.size()-1) +1 );
 	}
 	
-//	for (int i = 0;i<children.size();i++){
-//		mutate(children);
-//		evaluateIndividuals(children);
-//	}
+	double bestFitness = 1 - potParent[0].fitness;
+	parent = potParent[0];
 	
-	return children;
+	for (int i = 1; i<tnSize;i++) {
+		if (1 - potParent[i].fitness> bestFitness) {
+			bestFitness = potParent[i].fitness;
+			parent = potParent[i];
+		}
+	}
+	
+	
+	return parent;
+	
+
 }
+
 
 
 
@@ -268,6 +266,139 @@ private ArrayList<Individual> getGoodParents(){
 }
 
 
+private ArrayList<Individual> getGoodParents2(){
+	
+	
+ArrayList<Individual> halfNewPop = new ArrayList<Individual>();
+
+	
+	for (int i = 0; i<population.size()/2;i++) {
+		Individual temp = new Individual();
+		temp = tournamentSelect();
+		//temp = rouletteSelect();
+		halfNewPop.add(temp);
+	}
+	
+	
+	return halfNewPop;
+	
+	
+	
+	
+	
+}
+
+
+private ArrayList<Individual> myUniformCrossover(ArrayList<Individual> parents){	//Its replaces the part before or after the weights of the hidden nodes
+	
+	ArrayList<Individual> children = new ArrayList<>();
+	
+	
+	
+	Random r = new Random();
+	
+	int childNum = 2;
+	
+	//For Potential Children loop
+	int potChild = 4;
+	
+	for(int k = 0;k<parents.size();k=k+2) {
+		
+		ArrayList<Individual> initChildren = new ArrayList<>();
+		
+		for (int i =0;i<potChild;i++) {
+		//for (int i =0;i<childNum;i++) {
+			
+			Individual temp = new Individual();
+			
+			for (int j = 0; j<parents.get(0).chromosome.length;j++) {		//Chromosome length is the same for every chromosome
+				
+				if (r.nextDouble()>0.5D) {
+					temp.chromosome[j]=parents.get(k).chromosome[j];
+				}
+				else {
+					temp.chromosome[j]=parents.get(k+1).chromosome[j];
+				}
+				
+			}
+			
+			//With potential children loop
+			
+			
+			//Without potential Children loop
+			//children.add(temp);
+		}
+		
+		mutate(initChildren);
+		for(int i=0;i<initChildren.size();i++) {
+			Fitness.evaluate(initChildren.get(i),this);
+		}
+		
+		Collections.sort(initChildren);
+		
+		for (int i=0;i<childNum;i++) {
+			children.add(initChildren.get(i));
+		}
+		
+		
+	}
+	
+//	for (int i = 0;i<children.size();i++){
+//		mutate(children);
+//		evaluateIndividuals(children);
+//	}
+	
+	return children;
+}
+
+private ArrayList<Individual> uniformCrossover(Individual parent1, Individual parent2){
+	
+	ArrayList<Individual> children = new ArrayList<>();
+	Individual temp = new Individual();
+	
+	Random r = new Random();
+	
+	int childNum = 2;
+	
+	//For Potential Children loop
+	int potChildNum = 4;
+	ArrayList<Individual> potChildren = new ArrayList<>();
+	
+	
+	for (int i =0;i<potChildNum;i++) {
+		
+		for (int j = 0; j<parent1.chromosome.length;j++) {
+			
+			if (r.nextDouble()>0.5D) {
+				temp.chromosome[j]=parent1.chromosome[j];
+			}
+			else {
+				temp.chromosome[j]=parent2.chromosome[j];
+			}
+			
+		}
+		
+		
+		potChildren.add(temp);
+	}
+	
+	mutate(potChildren);
+	for (int i=0;i<potChildren.size();i++) {
+		Fitness.evaluate(potChildren.get(i),this);
+	}
+	
+	Collections.sort(potChildren);
+	
+	for (int i=0;i<childNum;i++) {
+		children.add(potChildren.get(i));
+	}
+	
+	return children;
+	
+}
+
+
+
 	/**
 	 * Crossover / Reproduction
 	 * 
@@ -277,7 +408,14 @@ private ArrayList<Individual> getGoodParents(){
 	private ArrayList<Individual> reproduce() {
 		//return ArithmeticRecombination(parent1, parent2);
 		//return uniformCrossover(parent1, parent2);
-		return myUniformCrossover(newPopulation);
+		//return myUniformCrossover(newPopulation);
+		return null;
+	} 
+	
+	private ArrayList<Individual> reproduce2(Individual parent1,Individual parent2) {
+		//return ArithmeticRecombination(parent1, parent2);
+		return uniformCrossover(parent1, parent2);
+		//return myUniformCrossover(newPopulation);
 	} 
 	
 	/**
