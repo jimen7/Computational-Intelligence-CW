@@ -13,12 +13,12 @@ public class Parameters {
 	 * You may add other Parameters as required to this class 
 	 * 
 	 */
-	private static int numHidden = 2;	
+	private static int numHidden = 3;	
 	private static int numGenes = calculateNumGenes();
 	public static double minGene = -3; // specifies minimum and maximum weight values 
 	public static double maxGene = +3;
 		
-	public static int popSize = 1000;
+	public static int popSize = 40;
 	public static int maxEvaluations = 20000;
 	
 	// Parameters for mutation 

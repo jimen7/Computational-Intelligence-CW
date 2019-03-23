@@ -445,17 +445,74 @@ private ArrayList<Individual> uniformCrossover(Individual parent1, Individual pa
 	 * 
 	 */
 	private void replace(ArrayList<Individual> individuals) {
-		//ArrayList<Individual> newPop = getGoodParents();
 		
-		for(Individual individual : individuals) {
-			int idx = getWorstIndex();		
-			population.set(idx, individual);
-		}		
-		
-		//int i = 0;
+			//replaceWorst(individuals);
+			tournReplace(individuals);
+
 	}
 
 	
+	
+	private void replaceWorst(ArrayList<Individual> individuals) {
+		for(Individual individual : individuals) {
+			int idx = getWorstIndex();		
+			population.set(idx, individual);
+		}	
+	}
+	
+	
+	private void tournReplace(ArrayList<Individual> individuals) {
+		
+		Individual worst = null;
+		int tnSize = 10;
+		//int tnSize = population.size()/8;
+		Individual[] potWorst = new Individual[tnSize];
+		
+		ArrayList<Individual> tempPop = population;
+		
+		Collections.sort(tempPop);
+		
+		Random r = new Random();
+		
+		
+		for (int i=0,j=tempPop.size()-1;i<tnSize;i++,j--) {
+			potWorst[i] = tempPop.get(j);
+			//potParent[i] = population.get(r.nextInt(population.size()-1) +1 );
+		}
+		
+		
+		
+		for (int k =0;k<individuals.size();k++) {
+			
+			
+			
+//			double worstFitness = 1 - potWorst[0].fitness;
+//			worst = potWorst[0];
+//			
+//			for (int i = 1; i<tnSize;i++) {
+//				if (1 - potWorst[i].fitness< worstFitness) {
+//					worstFitness = potWorst[i].fitness;
+//					worst = potWorst[i];
+//				}
+//			}
+			
+			worst = tempPop.get(r.nextInt(tempPop.size()-1));
+			
+			
+
+				population.remove(worst);
+				population.add(individuals.get(k));
+				//tempPop.remove(worst);
+			
+			
+		}
+
+
+		
+		//return parent;
+		
+		
+	}
 	
 
 	/**
