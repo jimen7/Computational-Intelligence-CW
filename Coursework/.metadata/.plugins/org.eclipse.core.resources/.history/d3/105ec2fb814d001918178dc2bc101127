@@ -496,7 +496,7 @@ private ArrayList<Individual> uniformCrossover(Individual parent1, Individual pa
 //				}
 //			}
 			
-			worst = potWorst[(r.nextInt(potWorst.length))];
+			worst = tempPop.get(r.nextInt(tempPop.size()-1));
 			
 			
 
