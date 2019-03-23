@@ -26,7 +26,7 @@ public class StartNoGui {
 		Parameters.popSize = 40; // Population Size
 		
 		Parameters.mutateRate = 0.1;
-		Parameters.mutateChange = 0.3;
+		Parameters.mutateChange = 0.05;
 
 		//number of hidden nodes in the neural network
 		Parameters.setHidden(3);

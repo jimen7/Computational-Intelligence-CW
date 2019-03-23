@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 import org.omg.DynamicAny.DynAnyFactoryPackage.InconsistentTypeCodeHelper;
 
@@ -150,7 +149,7 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 	private Individual select() {	
 		
 		//return rouletteSelect();
-		return tournamentSelect(getPartPop(population, 2));
+		return tournamentSelect(getPartPop(population, 4));
 		//return null;
 	}
 	
@@ -362,7 +361,7 @@ private ArrayList<Individual> uniformCrossover(Individual parent1, Individual pa
 	int childNum = 2;
 	
 	//For Potential Children loop
-	int potChildNum = 4;
+	int potChildNum = 5;
 	ArrayList<Individual> potChildren = new ArrayList<>();
 	
 	
@@ -424,19 +423,17 @@ private ArrayList<Individual> reproduce2(Individual parent1,Individual parent2) 
 	 * 
 	 * 
 	 */
-private void mutate(ArrayList<Individual> individuals) {
-	Random r = new Random();
+private void mutate(ArrayList<Individual> individuals) {		
 		for(Individual individual : individuals) {
 			for (int i = 0; i < individual.chromosome.length; i++) {
 				if (Parameters.random.nextDouble() < Parameters.mutateRate) {
-					//double test = Parameters.random.nextDouble()-Parameters.mutateChange;
-					double randomValue =  ThreadLocalRandom.current().nextDouble(0, Parameters.mutateChange);
+					double test = Parameters.random.nextDouble()-Parameters.mutateChange;
 					if (Parameters.random.nextBoolean()) {
 						//individual.chromosome[i] += (Parameters.mutateChange);
-						individual.chromosome[i] += (randomValue);
+						individual.chromosome[i] += (test);
 					} else {
 						//individual.chromosome[i] -= (Parameters.mutateChange);
-						individual.chromosome[i] -= (randomValue);
+						individual.chromosome[i] -= (test);
 						
 					}
 				}
@@ -506,11 +503,9 @@ private void tournReplace(ArrayList<Individual> individuals) {
 			worst = potWorst[(r.nextInt(potWorst.length))];
 			
 			
-			if (worst.fitness>individuals.get(k).fitness) {
+
 				population.remove(worst);
 				population.add(individuals.get(k));
-			}
-				
 				//tempPop.remove(worst);
 			
 			

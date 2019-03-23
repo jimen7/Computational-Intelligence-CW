@@ -150,7 +150,7 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 	private Individual select() {	
 		
 		//return rouletteSelect();
-		return tournamentSelect(getPartPop(population, 2));
+		return tournamentSelect(getPartPop(population, 4));
 		//return null;
 	}
 	
@@ -362,7 +362,7 @@ private ArrayList<Individual> uniformCrossover(Individual parent1, Individual pa
 	int childNum = 2;
 	
 	//For Potential Children loop
-	int potChildNum = 4;
+	int potChildNum = 5;
 	ArrayList<Individual> potChildren = new ArrayList<>();
 	
 	
@@ -506,11 +506,9 @@ private void tournReplace(ArrayList<Individual> individuals) {
 			worst = potWorst[(r.nextInt(potWorst.length))];
 			
 			
-			if (worst.fitness>individuals.get(k).fitness) {
+
 				population.remove(worst);
 				population.add(individuals.get(k));
-			}
-				
 				//tempPop.remove(worst);
 			
 			

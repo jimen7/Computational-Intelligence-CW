@@ -471,7 +471,7 @@ private void replaceWorst(ArrayList<Individual> individuals) {
 private void tournReplace(ArrayList<Individual> individuals) {
 		
 		Individual worst = null;
-		int tnSize = 10;
+		int tnSize = 12;
 		//int tnSize = population.size()/8;
 		Individual[] potWorst = new Individual[tnSize];
 		
@@ -506,7 +506,7 @@ private void tournReplace(ArrayList<Individual> individuals) {
 			worst = potWorst[(r.nextInt(potWorst.length))];
 			
 			
-			if (worst.fitness>individuals.get(k).fitness) {
+			if (worst.fitness<individuals.get(k).fitness) {
 				population.remove(worst);
 				population.add(individuals.get(k));
 			}

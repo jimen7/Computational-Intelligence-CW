@@ -150,7 +150,7 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 	private Individual select() {	
 		
 		//return rouletteSelect();
-		return tournamentSelect(getPartPop(population, 2));
+		return tournamentSelect(getPartPop(population, 4));
 		//return null;
 	}
 	
@@ -506,11 +506,9 @@ private void tournReplace(ArrayList<Individual> individuals) {
 			worst = potWorst[(r.nextInt(potWorst.length))];
 			
 			
-			if (worst.fitness>individuals.get(k).fitness) {
+
 				population.remove(worst);
 				population.add(individuals.get(k));
-			}
-				
 				//tempPop.remove(worst);
 			
 			

@@ -506,11 +506,9 @@ private void tournReplace(ArrayList<Individual> individuals) {
 			worst = potWorst[(r.nextInt(potWorst.length))];
 			
 			
-			if (worst.fitness>individuals.get(k).fitness) {
+
 				population.remove(worst);
 				population.add(individuals.get(k));
-			}
-				
 				//tempPop.remove(worst);
 			
 			
