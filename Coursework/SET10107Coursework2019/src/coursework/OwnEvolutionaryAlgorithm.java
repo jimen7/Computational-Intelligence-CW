@@ -176,7 +176,7 @@ private Individual tournamentSelect(ArrayList<Individual> newPop) {
 	Individual parent = null;
 	
 	int tnSize = 20;
-	//int tnSize = population.size()/3;
+	//int tnSize = population.size()/8;
 	Individual[] potParent = new Individual[tnSize];
 	
 	
@@ -362,7 +362,7 @@ private ArrayList<Individual> uniformCrossover(Individual parent1, Individual pa
 	int childNum = 2;
 	
 	//For Potential Children loop
-	int potChildNum = 4;
+	int potChildNum = 2;
 	ArrayList<Individual> potChildren = new ArrayList<>();
 	
 	
@@ -471,8 +471,8 @@ private void replaceWorst(ArrayList<Individual> individuals) {
 private void tournReplace(ArrayList<Individual> individuals) {
 		
 		Individual worst = null;
-		int tnSize = 10;
-		//int tnSize = population.size()/8;
+		//int tnSize = 10;
+		int tnSize = population.size()/8;
 		Individual[] potWorst = new Individual[tnSize];
 		
 		ArrayList<Individual> tempPop = population;
