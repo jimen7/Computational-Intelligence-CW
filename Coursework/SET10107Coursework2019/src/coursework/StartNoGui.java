@@ -23,7 +23,7 @@ public class StartNoGui {
 		 * Note you should use a maximum of 20,0000 evaluations for your experiments 
 		 */
 		Parameters.maxEvaluations = 20000; // Used to terminate the EA after this many generations
-		Parameters.popSize = 100; // Population Size
+		Parameters.popSize = 150; // Population Size
 		
 		Parameters.mutateRate = 0.1;
 		Parameters.mutateChange = 0.3;

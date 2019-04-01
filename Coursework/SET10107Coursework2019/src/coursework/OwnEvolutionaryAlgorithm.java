@@ -25,6 +25,11 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 	/**
 	 * The Main Evolutionary Loop
 	 */
+	
+	double rateOfChange = 0;
+	
+	int loopsNoChange = 0;
+	
 	@Override
 	public void run() {		
 		//Initialise a population of Individuals with random weights
@@ -37,7 +42,7 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 		/**
 		 * main EA processing loop
 		 */		
-		
+
 		while (evaluations < Parameters.maxEvaluations) {
 
 			/**
@@ -46,7 +51,6 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 			 * You must set the best Individual at the end of a run
 			 * 
 			 */
-
 			// Select 2 Individuals from the current population. Currently returns random Individual
 			Individual parent1 = select(); 
 			Individual parent2 = select();
@@ -80,6 +84,17 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 
 			// check to see if the best has improved
 			best = getBest();
+			
+			rateOfChange = best.fitness/getMeanValue();
+			
+			if (rateOfChange<0.01){
+				Parameters.mutateRate+=0.05;
+				loopsNoChange+=1;
+			}
+			else{
+				loopsNoChange=0;
+				Parameters.mutateRate=0.1;
+			}
 			
 			// Implemented in NN class. 
 			outputStats();
@@ -175,8 +190,8 @@ private Individual tournamentSelect(ArrayList<Individual> newPop) {
 	
 	Individual parent = null;
 	
-	int tnSize = 20;
-	//int tnSize = population.size()/8;
+	//int tnSize = 20;
+	int tnSize = population.size()/5;
 	Individual[] potParent = new Individual[tnSize];
 	
 	
@@ -445,6 +460,8 @@ private void mutate(ArrayList<Individual> individuals) {
 		
 	}
 
+
+
 	/**
 	 * 
 	 * Replaces the worst member of the population 
@@ -471,8 +488,8 @@ private void replaceWorst(ArrayList<Individual> individuals) {
 private void tournReplace(ArrayList<Individual> individuals) {
 		
 		Individual worst = null;
-		//int tnSize = 10;
-		int tnSize = population.size()/8;
+		int tnSize = 10;
+		//int tnSize = population.size()/8;
 		Individual[] potWorst = new Individual[tnSize];
 		
 		ArrayList<Individual> tempPop = population;
@@ -522,7 +539,17 @@ private void tournReplace(ArrayList<Individual> individuals) {
 		
 		
 	}
-	
+
+
+private double getMeanValue(){
+	double fitness_average = 0;
+	double fitness_total=0;
+	for (Individual i: population){
+		fitness_total+=i.fitness;
+	}
+	fitness_average=fitness_total/population.size();
+	return fitness_average;
+}
 
 	/**
 	 * Returns the index of the worst member of the population

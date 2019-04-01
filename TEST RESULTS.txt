@@ -1,0 +1,40 @@
+test results on current algorithm
+
+
+Two children
+1)0.08, on training was 0.02
+2)0.017, on training 0.085
+3)0.127, 0.22 on test
+4)0.0469, 0.18 on test
+5)0.1125, 0.27 on test
+6) 0.125, 0.25 on test
+7) 0.104, 0.224 on test
+8) 0.0350, 0.16 on test
+9) 0.0535, 0.13 on test
+10) 0.09, 0.018 on test
+
+
+One Child
+1)0.09, 0.21 on test
+
+2) 0.019694251408129228	
+Fitness on Test 0.06510500646655501
+
+3) 0.12481090772589998	
+Fitness on Test 0.26143750737414406
+
+4) 0.058413063557839234	
+Fitness on Test 0.18212223567218055
+
+5) 
+
+
+New Method, changing mutation rate:
+
+1) 0.012256428607760037	
+Fitness on Test 0.01861594771230394
+
+2)0.0999222101868667	
+Fitness on Test 0.20648204214930288
+
+3)
