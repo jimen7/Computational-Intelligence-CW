@@ -16,25 +16,76 @@ Two children
 
 One Child
 1)0.09, 0.21 on test
-
 2) 0.019694251408129228	
 Fitness on Test 0.06510500646655501
-
 3) 0.12481090772589998	
 Fitness on Test 0.26143750737414406
-
 4) 0.058413063557839234	
 Fitness on Test 0.18212223567218055
-
 5) 
 
 
-New Method, changing mutation rate:
-
+New Method, changing mutation rate, 4 hidden nodes, 150 population, changing mutationRate if it rateOfChange = best.fitness/getMeanValue()
+hasn't changed over multiple turns, two children in uniform, tournament select, tournament replace:
 1) 0.012256428607760037	
 Fitness on Test 0.01861594771230394
-
 2)0.0999222101868667	
 Fitness on Test 0.20648204214930288
+3)0.1266633737408747	
+Fitness on Test 0.2871845419298753
+4)0.007930923572135666	
+Fitness on Test 0.012953454051640922
+5)0.0633384220409418	
+Fitness on Test 0.1597609026647945
+6)0.10254825594955902	
+Fitness on Test 0.21344636790087623
+7)0.1076578415976819	
+Fitness on Test 0.220517778637558
+8)0.038541835033839664	
+Fitness on Test 0.12331353760710437
+9)0.09959690058845859	
+Fitness on Test 0.21776878241487385
+10)0.04692299331083815	
+Fitness on Test 0.1768293543316559
 
+New Method, 4 hidden nodes, 150 population, changing mutationRate if previousBest==best
+hasn't changed over multiple turns, two children in uniform, tournament select, tournament replace:
+1)0.09681635102447018	
+Fitness on Test 0.2126567835654665
+2)0.09728349261650464	
+Fitness on Test 0.21409737690771588
+3)0.10234674612373276	
+Fitness on Test 0.21023310790590427
+4)0.09688434963467135	
+Fitness on Test 0.1953727498256722
+5)0.09023564436094526	
+Fitness on Test 0.2215654909393073
+6)0.020134744777608647	
+Fitness on Test 0.11078902165421568
+7)0.046683399340825944	
+Fitness on Test 0.15055506870467636
+8)0.0224248313865176	
+Fitness on Test 0.10878980789167417
+9)0.048601783709667924	
+Fitness on Test 0.18163798133029804
+10)0.10145850593826786	
+Fitness on Test 0.22907731043085605
+
+
+New Method, 4 hidden nodes, 150 population, changing mutationRate if previousBest==best
+hasn't changed over multiple turns, one child in uniform, tournament select, tournament replace:
+
+1)0.095738310563575	
+Fitness on Test 0.23970784353231872
+2)0.08958499637928262	
+Fitness on Test 0.15060768088258958
 3)
+4)
+5)
+6)
+7)
+8)
+9)
+10)
+
+

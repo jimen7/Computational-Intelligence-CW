@@ -30,6 +30,8 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 	
 	int loopsNoChange = 0;
 	
+	Individual previousBest = new Individual();
+	
 	@Override
 	public void run() {		
 		//Initialise a population of Individuals with random weights
@@ -85,15 +87,25 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 			// check to see if the best has improved
 			best = getBest();
 			
-			rateOfChange = best.fitness/getMeanValue();
+//			rateOfChange = best.fitness/getMeanValue();
+//			
+//			if (rateOfChange<0.01){
+//				Parameters.mutateRate+=0.05;
+//				loopsNoChange+=1;
+//			}
+//			else{
+//				loopsNoChange=0;
+//				Parameters.mutateRate=0.1;
+//			}
 			
-			if (rateOfChange<0.01){
+			if (previousBest==best) {
 				Parameters.mutateRate+=0.05;
 				loopsNoChange+=1;
 			}
-			else{
-				loopsNoChange=0;
+			else {
 				Parameters.mutateRate=0.1;
+				previousBest = best;
+				loopsNoChange=0;
 			}
 			
 			// Implemented in NN class. 
@@ -374,10 +386,10 @@ private ArrayList<Individual> uniformCrossover(Individual parent1, Individual pa
 	
 	Random r = new Random();
 	
-	int childNum = 2;
+	int childNum = 1;
 	
 	//For Potential Children loop
-	int potChildNum = 2;
+	int potChildNum = 1;
 	ArrayList<Individual> potChildren = new ArrayList<>();
 	
 	
