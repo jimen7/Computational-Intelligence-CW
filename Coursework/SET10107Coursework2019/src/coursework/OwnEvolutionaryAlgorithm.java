@@ -98,7 +98,7 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 //				Parameters.mutateRate=0.1;
 //			}
 			
-			if (previousBest==best) {
+			if (previousBest.fitness==best.fitness) {
 				Parameters.mutateRate+=0.05;
 				loopsNoChange+=1;
 			}
@@ -110,6 +110,7 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 			
 			// Implemented in NN class. 
 			outputStats();
+			System.out.println("Loops with no change: "+loopsNoChange);
 			
 			//Increment number of completed generations		
 			
