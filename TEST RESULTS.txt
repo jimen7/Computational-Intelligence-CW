@@ -89,3 +89,20 @@ Fitness on Test 0.15060768088258958
 10)
 
 
+New Method, 4 hidden nodes, 150 population, changing mutationRate if previousBest.fitness==best.fitness
+hasn't changed over multiple turns, one child in uniform, tournament select, tournament replace:
+
+1)Fitness 0.010210008237229605
+2)0.010629283098823971	
+Fitness on Test 0.01870476224648944
+3)0.029608954460630832	
+Fitness on Test 0.11072085858403212
+4)
+5)
+6)
+7)
+8)
+9)
+10)
+
+
