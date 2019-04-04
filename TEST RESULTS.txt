@@ -2,6 +2,7 @@ test results on current algorithm
 
 
 Two children
+Training:
 1)0.08, on training was 0.02
 2)0.017, on training 0.085
 3)0.127, 0.22 on test
@@ -12,6 +13,8 @@ Two children
 8) 0.0350, 0.16 on test
 9) 0.0535, 0.13 on test
 10) 0.09, 0.018 on test
+
+Test:
 
 
 One Child
@@ -72,29 +75,13 @@ Fitness on Test 0.18163798133029804
 Fitness on Test 0.22907731043085605
 
 
-New Method, 4 hidden nodes, 150 population, changing mutationRate if previousBest==best
-hasn't changed over multiple turns, one child in uniform, tournament select, tournament replace:
-
-1)0.095738310563575	
-Fitness on Test 0.23970784353231872
-2)0.08958499637928262	
-Fitness on Test 0.15060768088258958
-3)
-4)
-5)
-6)
-7)
-8)
-9)
-10)
-
 
 New Method, 4 hidden nodes, 150 population, changing mutationRate if previousBest.fitness==best.fitness
 hasn't changed over multiple turns, one child in uniform, tournament select, tournament replace:
 
 1)Fitness 0.010210008237229605
 2)0.010629283098823971	
-Fitness on Test 0.01870476224648944
+Fitness on Test 0.010629283098823971	
 3)0.029608954460630832	
 Fitness on Test 0.11072085858403212
 4)
