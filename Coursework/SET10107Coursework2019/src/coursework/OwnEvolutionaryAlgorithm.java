@@ -98,9 +98,11 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 //				Parameters.mutateRate=0.1;
 //			}
 			
-			if (previousBest.fitness==best.fitness) {
-				Parameters.mutateRate+=0.05;
+			if (previousBest.fitness==best.fitness ) {
 				loopsNoChange+=1;
+				//if (best.fitness>0.017) {
+					Parameters.mutateRate+=0.03;
+			//	}
 			}
 			else {
 				Parameters.mutateRate=0.1;
