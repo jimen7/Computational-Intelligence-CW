@@ -29,7 +29,7 @@ public class StartNoGui {
 		Parameters.mutateChange = 0.3;
 
 		//number of hidden nodes in the neural network
-		Parameters.setHidden(4);
+		Parameters.setHidden(7);
 		
 		//Set the data set for training 
 		Parameters.setDataSet(DataSet.Training);
