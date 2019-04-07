@@ -33,7 +33,6 @@ public class StartNoGui {
 		
 		//Set the data set for training 
 		Parameters.setDataSet(DataSet.Training);
-		//Parameters.setDataSet(DataSet.Random);
 		
 		
 		//Create a new Neural Network Trainer Using the above parameters 

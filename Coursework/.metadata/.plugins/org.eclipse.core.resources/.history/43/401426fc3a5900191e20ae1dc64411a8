@@ -98,10 +98,10 @@ public class OwnEvolutionaryAlgorithm extends NeuralNetwork {
 //				Parameters.mutateRate=0.1;
 //			}
 			
-			if (previousBest.fitness==best.fitness) {
+			if (previousBest.fitness==best.fitness ) {
 				loopsNoChange+=1;
-			//if (best.fitness>0.017) {
-				Parameters.mutateRate+=0.03;
+				//if (best.fitness>0.017) {
+					Parameters.mutateRate+=0.03;
 			//	}
 			}
 			else {
@@ -389,10 +389,10 @@ private ArrayList<Individual> uniformCrossover(Individual parent1, Individual pa
 	
 	Random r = new Random();
 	
-	int childNum = 1;
+	int childNum = 2;
 	
 	//For Potential Children loop
-	int potChildNum = 1;
+	int potChildNum = 5;
 	ArrayList<Individual> potChildren = new ArrayList<>();
 	
 	

@@ -33,7 +33,6 @@ public class StartNoGui {
 		
 		//Set the data set for training 
 		Parameters.setDataSet(DataSet.Training);
-		//Parameters.setDataSet(DataSet.Random);
 		
 		
 		//Create a new Neural Network Trainer Using the above parameters 
@@ -54,6 +53,7 @@ public class StartNoGui {
 		 * We now need to test the trained network on the unseen test Set
 		 */
 		Parameters.setDataSet(DataSet.Test);
+		//Parameters.setDataSet(DataSet.Random);
 		double fitness = Fitness.evaluate(nn);
 		System.out.println("Fitness on " + Parameters.getDataSet() + " " + fitness);
 		
